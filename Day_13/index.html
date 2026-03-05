@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resilience & Recovery System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Resilience & Recovery System</h1>
+            <p>Teaching failure detection, recovery, and rollback strategies</p>
+        </header>
+
+        <div class="control-panel">
+            <div class="actions">
+                <button id="injectFailure" class="btn btn-danger">Inject Failure</button>
+                <button id="recover" class="btn btn-warning">Recover</button>
+                <button id="rollback" class="btn btn-primary">Rollback</button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <section class="system-status">
+                <h2>System Components</h2>
+                <div class="components-grid" id="componentsGrid">
+                    <!-- Components will be dynamically generated -->
+                </div>
+            </section>
+
+            <section class="incident-log">
+                <h2>Incident Log</h2>
+                <div class="log-container" id="logContainer">
+                    <!-- Log entries will be dynamically added -->
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

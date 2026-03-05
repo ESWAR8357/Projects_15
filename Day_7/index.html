@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client-Side Database Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="logo">🗄️</div>
+                    <div class="header-info">
+                        <h1>Database Manager</h1>
+                        <p>Client-Side Data Management System</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="record-count" id="recordCount">
+                        <span class="count-number">0</span>
+                        <span class="count-label">Records</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Data Entry Form -->
+            <section class="form-section">
+                <div class="form-card">
+                    <div class="card-header">
+                        <h2>📝 Add New Record</h2>
+                        <div class="form-status" id="formStatus">Ready</div>
+                    </div>
+                    
+                    <form class="data-form" id="dataForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nameInput" class="form-label">Full Name</label>
+                                <input type="text" id="nameInput" class="form-input" placeholder="Enter full name" required>
+                                <div class="error-message" id="nameError"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="emailInput" class="form-label">Email Address</label>
+                                <input type="email" id="emailInput" class="form-input" placeholder="Enter email address" required>
+                                <div class="error-message" id="emailError"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phoneInput" class="form-label">Phone Number</label>
+                                <input type="tel" id="phoneInput" class="form-input" placeholder="Enter phone number" required>
+                                <div class="error-message" id="phoneError"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="companyInput" class="form-label">Company</label>
+                                <input type="text" id="companyInput" class="form-input" placeholder="Enter company name" required>
+                                <div class="error-message" id="companyError"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="addBtn">
+                                <span class="btn-icon">➕</span>
+                                <span class="btn-text">Add Record</span>
+                            </button>
+                            <button type="button" class="btn btn-outline" id="clearBtn">
+                                <span class="btn-text">Clear Form</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Data Table Section -->
+            <section class="table-section">
+                <div class="table-card">
+                    <div class="card-header">
+                        <h2>📊 Database Records</h2>
+                        <div class="table-controls">
+                            <div class="search-container">
+                                <input type="text" id="searchInput" class="search-input" placeholder="Search records...">
+                                <span class="search-icon">🔍</span>
+                            </div>
+                            <button class="btn btn-secondary" id="exportBtn">
+                                <span class="btn-icon">💾</span>
+                                <span class="btn-text">Export</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="data-table" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th class="sortable" data-column="name">
+                                        <span>Name</span>
+                                        <span class="sort-icon">↕️</span>
+                                    </th>
+                                    <th class="sortable" data-column="email">
+                                        <span>Email</span>
+                                        <span class="sort-icon">↕️</span>
+                                    </th>
+                                    <th class="sortable" data-column="phone">
+                                        <span>Phone</span>
+                                        <span class="sort-icon">↕️</span>
+                                    </th>
+                                    <th class="sortable" data-column="company">
+                                        <span>Company</span>
+                                        <span class="sort-icon">↕️</span>
+                                    </th>
+                                    <th class="sortable" data-column="created">
+                                        <span>Created</span>
+                                        <span class="sort-icon">↕️</span>
+                                    </th>
+                                    <th class="actions-column">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <!-- Records will be inserted here -->
+                            </tbody>
+                        </table>
+                        
+                        <!-- Empty State -->
+                        <div class="empty-state" id="emptyState">
+                            <div class="empty-icon">📋</div>
+                            <h3>No records found</h3>
+                            <p>Add your first record using the form above</p>
+                        </div>
+                        
+                        <!-- Search No Results -->
+                        <div class="no-results" id="noResults" style="display: none;">
+                            <div class="no-results-icon">🔍</div>
+                            <h3>No matching records</h3>
+                            <p>Try adjusting your search criteria</p>
+                            <button class="btn btn-outline" id="clearSearchBtn">Clear Search</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal-overlay" id="deleteModal" style="display: none;">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Confirm Delete</h3>
+            </div>
+            <div class="modal-body">
+                <div class="warning-icon">⚠️</div>
+                <p>Are you sure you want to delete this record?</p>
+                <div class="record-preview" id="deletePreview">
+                    <!-- Record details will be shown here -->
+                </div>
+                <p class="warning-text">This action cannot be undone.</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-danger" id="confirmDelete">
+                    <span class="btn-icon">🗑️</span>
+                    <span class="btn-text">Delete</span>
+                </button>
+                <button class="btn btn-outline" id="cancelDelete">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Toast -->
+    <div class="toast" id="successToast" style="display: none;">
+        <div class="toast-content">
+            <span class="toast-icon">✅</span>
+            <span class="toast-message" id="toastMessage">Action completed successfully!</span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

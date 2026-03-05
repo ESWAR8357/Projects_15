@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Governance & Compliance Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Governance & Compliance Dashboard</h1>
+            <p class="subtitle">Role-Based Access Control & Policy Enforcement System</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Role Selection Panel -->
+            <section class="role-panel card">
+                <h2>Role Selection</h2>
+                <select id="roleSelect" class="role-dropdown">
+                    <option value="guest">Guest</option>
+                    <option value="user">User</option>
+                    <option value="manager">Manager</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <div class="current-role">
+                    Current Role: <span id="currentRole">Guest</span>
+                </div>
+            </section>
+
+            <!-- Actions Panel -->
+            <section class="actions-panel card">
+                <h2>System Actions</h2>
+                <div class="action-grid">
+                    <button id="viewBtn" class="action-btn" data-action="view">
+                        <span class="btn-icon">👁️</span>
+                        View Data
+                    </button>
+                    <button id="createBtn" class="action-btn" data-action="create">
+                        <span class="btn-icon">➕</span>
+                        Create Record
+                    </button>
+                    <button id="editBtn" class="action-btn" data-action="edit">
+                        <span class="btn-icon">✏️</span>
+                        Edit Record
+                    </button>
+                    <button id="deleteBtn" class="action-btn" data-action="delete">
+                        <span class="btn-icon">🗑️</span>
+                        Delete Record
+                    </button>
+                    <button id="policyBtn" class="action-btn" data-action="policy">
+                        <span class="btn-icon">⚖️</span>
+                        Change Policy
+                    </button>
+                </div>
+            </section>
+
+            <!-- Feedback Panel -->
+            <section class="feedback-panel card">
+                <h2>System Response</h2>
+                <div id="feedbackMessage" class="feedback-message">
+                    Select a role and attempt an action to see governance in action.
+                </div>
+            </section>
+
+            <!-- Audit Log Panel -->
+            <section class="audit-panel card">
+                <h2>Audit Log</h2>
+                <div class="audit-controls">
+                    <button id="clearLog" class="clear-btn">Clear Log</button>
+                </div>
+                <div id="auditLog" class="audit-log">
+                    <div class="audit-entry system">
+                        <span class="timestamp">System initialized</span>
+                        <span class="details">Governance system ready for policy enforcement</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

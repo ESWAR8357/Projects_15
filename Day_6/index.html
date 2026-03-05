@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Authentication System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="auth-container" id="authContainer">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="logo">🔐</div>
+                <h1>Welcome Back</h1>
+                <p>Sign in to your account to continue</p>
+            </div>
+            
+            <form class="auth-form" id="authForm">
+                <div class="form-group">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" class="form-input" placeholder="Enter your username" required>
+                    <div class="error-message" id="usernameError"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="password" class="form-input" placeholder="Enter your password" required>
+                        <button type="button" class="password-toggle" id="passwordToggle">
+                            <span class="toggle-icon">👁️</span>
+                        </button>
+                    </div>
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" id="loginBtn">
+                    <span class="btn-spinner" id="loginSpinner" style="display: none;">⏳</span>
+                    <span class="btn-text" id="loginText">Sign In</span>
+                </button>
+                
+                <div class="form-error" id="formError"></div>
+            </form>
+            
+            <div class="demo-section">
+                <div class="demo-divider">
+                    <span>Demo Credentials</span>
+                </div>
+                <div class="demo-accounts">
+                    <button class="demo-btn" onclick="authApp.quickLogin('admin', 'password123')">
+                        <span class="demo-user">admin</span>
+                        <span class="demo-pass">password123</span>
+                    </button>
+                    <button class="demo-btn" onclick="authApp.quickLogin('user', 'secret456')">
+                        <span class="demo-user">user</span>
+                        <span class="demo-pass">secret456</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Protected Dashboard -->
+    <div class="dashboard" id="dashboard" style="display: none;">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="logo-small">🔐</div>
+                    <div class="header-info">
+                        <h1>Dashboard</h1>
+                        <p>Protected Area</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="session-status" id="sessionStatus">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Active Session</span>
+                    </div>
+                    <div class="user-badge" id="userBadge">
+                        <span class="user-avatar">👤</span>
+                        <span class="user-name" id="userName">User</span>
+                    </div>
+                    <button class="btn btn-outline" id="logoutBtn">
+                        <span class="btn-icon">🚪</span>
+                        <span class="btn-text">Logout</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="welcome-section">
+                <div class="welcome-card">
+                    <div class="welcome-content">
+                        <h2>Welcome to your Dashboard!</h2>
+                        <p>You have successfully authenticated and can now access protected content.</p>
+                        <div class="session-info">
+                            <div class="info-item">
+                                <span class="info-label">Logged in as:</span>
+                                <span class="info-value" id="sessionUser">User</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Session started:</span>
+                                <span class="info-value" id="sessionTime">Just now</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Session ID:</span>
+                                <span class="info-value" id="sessionId">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features-section">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Analytics</h3>
+                        <p>View your dashboard analytics and insights</p>
+                        <button class="feature-btn">View Analytics</button>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">⚙️</div>
+                        <h3>Settings</h3>
+                        <p>Manage your account settings and preferences</p>
+                        <button class="feature-btn">Open Settings</button>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">👥</div>
+                        <h3>Team</h3>
+                        <p>Collaborate with your team members</p>
+                        <button class="feature-btn">View Team</button>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📈</div>
+                        <h3>Reports</h3>
+                        <p>Generate and download detailed reports</p>
+                        <button class="feature-btn">Create Report</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Authenticating...</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

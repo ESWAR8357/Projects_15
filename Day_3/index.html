@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h1 class="dashboard-title">User Profile Manager</h1>
+                <p class="dashboard-subtitle">Manage user profiles with LocalStorage</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Form Section -->
+            <section class="form-section">
+                <div class="form-card">
+                    <div class="card-header">
+                        <h2 class="card-title" id="formTitle">Create New Profile</h2>
+                        <div class="mode-indicator" id="modeIndicator">Create Mode</div>
+                    </div>
+                    
+                    <form class="profile-form" id="profileForm">
+                        <div class="form-group">
+                            <label for="nameInput" class="form-label">Full Name</label>
+                            <input type="text" id="nameInput" class="form-input" placeholder="Enter full name" required>
+                            <div class="error-message" id="nameError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="emailInput" class="form-label">Email Address</label>
+                            <input type="email" id="emailInput" class="form-input" placeholder="Enter email address" required>
+                            <div class="error-message" id="emailError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="roleInput" class="form-label">Role</label>
+                            <select id="roleInput" class="form-input" required>
+                                <option value="">Select a role</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Manager">Manager</option>
+                                <option value="User">User</option>
+                                <option value="Guest">Guest</option>
+                            </select>
+                            <div class="error-message" id="roleError"></div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="saveBtn">
+                                <span class="btn-icon">💾</span>
+                                <span class="btn-text">Save Profile</span>
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="updateBtn" disabled>
+                                <span class="btn-icon">✏️</span>
+                                <span class="btn-text">Update Profile</span>
+                            </button>
+                            <button type="button" class="btn btn-outline" id="cancelBtn" style="display: none;">
+                                <span class="btn-text">Cancel</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Profiles Section -->
+            <section class="profiles-section">
+                <div class="profiles-card">
+                    <div class="card-header">
+                        <h2 class="card-title">User Profiles</h2>
+                        <div class="profile-count" id="profileCount">0 profiles</div>
+                    </div>
+                    
+                    <div class="search-bar">
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search profiles...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    
+                    <div class="profiles-list" id="profilesList">
+                        <div class="empty-state" id="emptyState">
+                            <div class="empty-icon">👥</div>
+                            <h3>No profiles yet</h3>
+                            <p>Create your first user profile to get started</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal-overlay" id="deleteModal" style="display: none;">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Confirm Delete</h3>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this profile? This action cannot be undone.</p>
+                <div class="profile-preview" id="deletePreview"></div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-danger" id="confirmDelete">Delete</button>
+                <button class="btn btn-outline" id="cancelDelete">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

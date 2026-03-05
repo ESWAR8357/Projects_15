@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Profile UI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Main Profile Card -->
+        <div class="profile-card">
+            <!-- Header with theme toggle -->
+            <header class="card-header">
+                <h1>Smart Profile</h1>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </header>
+
+            <!-- Input Section -->
+            <section class="input-section">
+                <div class="input-group">
+                    <label for="nameInput">👤 Name</label>
+                    <input type="text" id="nameInput" placeholder="Enter your name" autocomplete="name">
+                </div>
+                
+                <div class="input-group">
+                    <label for="roleInput">💼 Role</label>
+                    <input type="text" id="roleInput" placeholder="Enter your role" autocomplete="organization-title">
+                </div>
+                
+                <button class="save-btn" id="saveBtn">
+                    <span class="btn-text">Save Profile</span>
+                </button>
+            </section>
+
+            <!-- Output Section -->
+            <section class="output-section" id="outputSection">
+                <div class="profile-display" id="profileDisplay">
+                    <div class="profile-info">
+                        <h2 id="displayName">Your Name</h2>
+                        <p id="displayRole">Your Role</p>
+                    </div>
+                    <div class="profile-status">
+                        <span class="status-indicator"></span>
+                        <span class="status-text">Profile Ready</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

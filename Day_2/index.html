@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State Control Panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="control-panel">
+            <header class="panel-header">
+                <h1>State Control Panel</h1>
+                <p class="subtitle">Single Source of Truth Demo</p>
+            </header>
+
+            <section class="counter-section">
+                <div class="counter-display" id="counterDisplay">
+                    <span class="counter-value" id="counterValue">0</span>
+                </div>
+                <p class="counter-label">Current Count</p>
+            </section>
+
+            <section class="controls-section">
+                <button class="control-btn decrease-btn" id="decreaseBtn">
+                    <span class="btn-icon">−</span>
+                    <span class="btn-text">Decrease</span>
+                </button>
+                
+                <button class="control-btn increase-btn" id="increaseBtn">
+                    <span class="btn-icon">+</span>
+                    <span class="btn-text">Increase</span>
+                </button>
+                
+                <button class="control-btn reset-btn" id="resetBtn">
+                    <span class="btn-icon">↻</span>
+                    <span class="btn-text">Reset</span>
+                </button>
+            </section>
+
+            <footer class="state-info">
+                <div class="info-item">
+                    <span class="info-label">State Updates:</span>
+                    <span class="info-value" id="updateCount">0</span>
+                </div>
+                <div class="info-note">
+                    All UI changes flow through a single render() function
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

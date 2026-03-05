@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RBAC Admin Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>Admin Dashboard</h1>
+                <p>Role-Based Access Control Demo</p>
+            </div>
+            
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required>
+                    <div class="error-message" id="usernameError"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" id="loginBtn">
+                    <span class="btn-text">Sign In</span>
+                </button>
+            </form>
+            
+            <div class="demo-accounts">
+                <h3>Demo Accounts</h3>
+                <div class="account-list">
+                    <div class="demo-account" onclick="rbacApp.quickLogin('admin', 'admin123')">
+                        <strong>admin</strong> / admin123
+                        <span class="role-badge admin">Admin</span>
+                    </div>
+                    <div class="demo-account" onclick="rbacApp.quickLogin('manager', 'manager123')">
+                        <strong>manager</strong> / manager123
+                        <span class="role-badge manager">Manager</span>
+                    </div>
+                    <div class="demo-account" onclick="rbacApp.quickLogin('user', 'user123')">
+                        <strong>user</strong> / user123
+                        <span class="role-badge user">User</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="dashboard" id="dashboard" style="display: none;">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <h1>Admin Dashboard</h1>
+                    <p>Role-Based Access Control</p>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <span class="username" id="currentUser">User</span>
+                        <span class="role-badge" id="currentRole">Role</span>
+                    </div>
+                    <button class="btn btn-outline" id="logoutBtn">
+                        <span class="btn-icon">🚪</span>
+                        <span class="btn-text">Logout</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Admin Panel -->
+            <section class="admin-panel" id="adminPanel">
+                <div class="panel-card">
+                    <div class="card-header">
+                        <h2>🔧 Admin Controls</h2>
+                        <div class="permission-indicator">
+                            <span class="permission-dot admin"></span>
+                            <span>Admin Only</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="action-grid">
+                            <button class="action-btn" data-permission="manage_users">
+                                <span class="action-icon">👥</span>
+                                <span class="action-text">Manage Users</span>
+                            </button>
+                            <button class="action-btn" data-permission="system_settings">
+                                <span class="action-icon">⚙️</span>
+                                <span class="action-text">System Settings</span>
+                            </button>
+                            <button class="action-btn" data-permission="view_logs">
+                                <span class="action-icon">📋</span>
+                                <span class="action-text">View Logs</span>
+                            </button>
+                            <button class="action-btn" data-permission="delete_data">
+                                <span class="action-icon">🗑️</span>
+                                <span class="action-text">Delete Data</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Manager Panel -->
+            <section class="manager-panel" id="managerPanel">
+                <div class="panel-card">
+                    <div class="card-header">
+                        <h2>📊 Manager Tools</h2>
+                        <div class="permission-indicator">
+                            <span class="permission-dot manager"></span>
+                            <span>Manager+</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="action-grid">
+                            <button class="action-btn" data-permission="view_reports">
+                                <span class="action-icon">📈</span>
+                                <span class="action-text">View Reports</span>
+                            </button>
+                            <button class="action-btn" data-permission="manage_content">
+                                <span class="action-icon">📝</span>
+                                <span class="action-text">Manage Content</span>
+                            </button>
+                            <button class="action-btn" data-permission="export_data">
+                                <span class="action-icon">💾</span>
+                                <span class="action-text">Export Data</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- User Panel -->
+            <section class="user-panel" id="userPanel">
+                <div class="panel-card">
+                    <div class="card-header">
+                        <h2>👤 User Actions</h2>
+                        <div class="permission-indicator">
+                            <span class="permission-dot user"></span>
+                            <span>All Users</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="action-grid">
+                            <button class="action-btn" data-permission="view_profile">
+                                <span class="action-icon">👁️</span>
+                                <span class="action-text">View Profile</span>
+                            </button>
+                            <button class="action-btn" data-permission="edit_profile">
+                                <span class="action-icon">✏️</span>
+                                <span class="action-text">Edit Profile</span>
+                            </button>
+                            <button class="action-btn" data-permission="view_dashboard">
+                                <span class="action-icon">📊</span>
+                                <span class="action-text">View Dashboard</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Unauthorized Access Panel -->
+            <section class="unauthorized-panel" id="unauthorizedPanel" style="display: none;">
+                <div class="panel-card unauthorized">
+                    <div class="unauthorized-content">
+                        <div class="unauthorized-icon">🚫</div>
+                        <h2>Access Denied</h2>
+                        <p>You don't have permission to perform this action.</p>
+                        <div class="required-role">
+                            <span>Required Role: <strong id="requiredRole">Admin</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Action Result Modal -->
+    <div class="modal-overlay" id="actionModal" style="display: none;">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modalTitle">Action Result</h3>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage">Action completed successfully!</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="modalClose">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

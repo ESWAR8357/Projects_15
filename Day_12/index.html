@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Health Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <header class="dashboard-header">
+            <h1>System Health Dashboard</h1>
+            <p class="subtitle">Real-time monitoring of critical system components</p>
+        </header>
+
+        <!-- Alert Banner - Hidden by default, shown when failures occur -->
+        <div id="alert-banner" class="alert-banner hidden">
+            <span class="alert-icon">⚠️</span>
+            <span id="alert-message">System Alert</span>
+            <button id="dismiss-alert" class="dismiss-btn">×</button>
+        </div>
+
+        <!-- System Overview Stats -->
+        <div class="overview-stats">
+            <div class="stat-card">
+                <div class="stat-number" id="healthy-count">0</div>
+                <div class="stat-label">Healthy</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="degraded-count">0</div>
+                <div class="stat-label">Degraded</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="down-count">0</div>
+                <div class="stat-label">Down</div>
+            </div>
+        </div>
+
+        <!-- Components Status Table/Cards -->
+        <div class="components-container">
+            <h2>Component Status</h2>
+            <div id="components-grid" class="components-grid">
+                <!-- Components will be dynamically inserted here -->
+            </div>
+        </div>
+
+        <!-- Last Updated Timestamp -->
+        <footer class="dashboard-footer">
+            <p>Last updated: <span id="last-updated">--</span></p>
+            <p class="monitoring-note">🔄 Continuous monitoring active</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

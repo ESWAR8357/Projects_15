@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async Data Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h1 class="dashboard-title">Async Data Dashboard</h1>
+                <p class="dashboard-subtitle">Real-time data fetching with async/await</p>
+            </div>
+        </header>
+
+        <!-- Main Dashboard -->
+        <main class="dashboard-main">
+            <div class="dashboard-card">
+                <!-- Control Panel -->
+                <section class="control-panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Data Controls</h2>
+                        <div class="status-indicator" id="statusIndicator">
+                            <span class="status-dot"></span>
+                            <span class="status-text">Ready</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-actions">
+                        <button class="btn btn-primary" id="loadBtn">
+                            <span class="btn-icon" id="loadIcon">📊</span>
+                            <span class="btn-text" id="loadText">Load Data</span>
+                        </button>
+                        
+                        <button class="btn btn-secondary" id="retryBtn" style="display: none;">
+                            <span class="btn-icon">🔄</span>
+                            <span class="btn-text">Retry</span>
+                        </button>
+                    </div>
+                    
+                    <div class="last-updated" id="lastUpdated" style="display: none;">
+                        <span class="update-label">Last updated:</span>
+                        <span class="update-time" id="updateTime"></span>
+                    </div>
+                </section>
+
+                <!-- Data Display -->
+                <section class="data-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Fetched Data</h2>
+                        <div class="data-count" id="dataCount">0 items</div>
+                    </div>
+                    
+                    <!-- Loading State -->
+                    <div class="loading-state" id="loadingState" style="display: none;">
+                        <div class="loading-spinner"></div>
+                        <h3>Loading data...</h3>
+                        <p>Please wait while we fetch the latest information</p>
+                    </div>
+                    
+                    <!-- Error State -->
+                    <div class="error-state" id="errorState" style="display: none;">
+                        <div class="error-icon">⚠️</div>
+                        <h3>Failed to load data</h3>
+                        <p class="error-message" id="errorMessage">Something went wrong</p>
+                        <div class="error-details" id="errorDetails"></div>
+                    </div>
+                    
+                    <!-- Success State -->
+                    <div class="success-state" id="successState" style="display: none;">
+                        <div class="success-banner">
+                            <span class="success-icon">✅</span>
+                            <span class="success-text">Data loaded successfully!</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Data Display -->
+                    <div class="data-display" id="dataDisplay">
+                        <div class="empty-state">
+                            <div class="empty-icon">📋</div>
+                            <h3>No data loaded</h3>
+                            <p>Click "Load Data" to fetch information from the API</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

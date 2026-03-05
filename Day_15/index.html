@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Portfolio & Career Readiness</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Professional Portfolio & Career Readiness</h1>
+            <p>Build your professional identity and showcase your skills</p>
+        </header>
+
+        <!-- Career Readiness Status -->
+        <section class="readiness-status">
+            <div class="status-card">
+                <h2>Career Readiness Status</h2>
+                <div class="progress-indicators">
+                    <div class="indicator">
+                        <span class="count" id="skills-count">0</span>
+                        <span class="label">Skills Added</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="count" id="projects-count">0</span>
+                        <span class="label">Projects Added</span>
+                    </div>
+                </div>
+                <div class="readiness-message" id="readiness-message">
+                    Portfolio in progress - Keep building!
+                </div>
+            </div>
+        </section>
+
+        <div class="main-content">
+            <!-- Skills Section -->
+            <section class="skills-section">
+                <div class="section-card">
+                    <h2>Skills</h2>
+                    <div class="input-group">
+                        <input type="text" id="skill-input" placeholder="Enter a skill (e.g., JavaScript, Problem Solving)">
+                        <button id="add-skill-btn" class="btn-primary">Add Skill</button>
+                    </div>
+                    <div class="skills-list" id="skills-list">
+                        <!-- Skills will be added here dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section class="projects-section">
+                <div class="section-card">
+                    <h2>Projects</h2>
+                    <div class="input-group">
+                        <input type="text" id="project-input" placeholder="Enter project name">
+                        <input type="text" id="project-description" placeholder="Brief description">
+                        <button id="add-project-btn" class="btn-primary">Add Project</button>
+                    </div>
+                    <div class="projects-list" id="projects-list">
+                        <!-- Projects will be added here dynamically -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

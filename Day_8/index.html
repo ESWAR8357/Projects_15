@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Login System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="logo">🔐</div>
+                <h1>Welcome Back</h1>
+                <p>Sign in to your secure account</p>
+            </div>
+            
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" class="form-input" placeholder="Enter your username" required>
+                    <div class="error-message" id="usernameError"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="password" class="form-input" placeholder="Enter your password" required>
+                        <button type="button" class="password-toggle" id="passwordToggle">
+                            <span class="toggle-icon">👁️</span>
+                        </button>
+                    </div>
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="remember-me-wrapper">
+                        <label class="remember-me-label">
+                            <input type="checkbox" id="rememberMe" class="remember-checkbox">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">Remember me</span>
+                        </label>
+                        <div class="remember-help">
+                            <span class="help-text">Keep me signed in on this device</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" id="loginBtn">
+                    <span class="btn-spinner" id="loginSpinner" style="display: none;">⏳</span>
+                    <span class="btn-text" id="loginText">Sign In</span>
+                </button>
+                
+                <div class="form-error" id="formError" style="display: none;"></div>
+            </form>
+            
+            <div class="demo-section">
+                <div class="demo-divider">
+                    <span>Demo Credentials</span>
+                </div>
+                <div class="demo-accounts">
+                    <button class="demo-btn" onclick="authApp.quickLogin('admin', 'secure123')">
+                        <span class="demo-user">admin</span>
+                        <span class="demo-pass">secure123</span>
+                    </button>
+                    <button class="demo-btn" onclick="authApp.quickLogin('user', 'password456')">
+                        <span class="demo-user">user</span>
+                        <span class="demo-pass">password456</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Protected Dashboard -->
+    <div class="dashboard" id="dashboard" style="display: none;">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="logo-small">🔐</div>
+                    <div class="header-info">
+                        <h1>Secure Dashboard</h1>
+                        <p>Protected Area</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="session-info" id="sessionInfo">
+                        <div class="session-type" id="sessionType">
+                            <span class="session-icon">🔒</span>
+                            <span class="session-text">Session Only</span>
+                        </div>
+                        <div class="session-expires" id="sessionExpires">
+                            <span class="expires-text">Expires when browser closes</span>
+                        </div>
+                    </div>
+                    <div class="user-badge" id="userBadge">
+                        <span class="user-avatar">👤</span>
+                        <span class="user-name" id="userName">User</span>
+                    </div>
+                    <button class="btn btn-outline" id="logoutBtn">
+                        <span class="btn-icon">🚪</span>
+                        <span class="btn-text">Logout</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="welcome-section">
+                <div class="welcome-card">
+                    <div class="welcome-content">
+                        <h2>Welcome to your secure dashboard!</h2>
+                        <p>You have successfully authenticated and can now access protected content.</p>
+                        <div class="session-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Logged in as:</span>
+                                <span class="detail-value" id="sessionUser">User</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Session started:</span>
+                                <span class="detail-value" id="sessionTime">Just now</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Session type:</span>
+                                <span class="detail-value" id="sessionTypeDetail">Session Storage</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Session ID:</span>
+                                <span class="detail-value" id="sessionId">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="security-section">
+                <div class="security-card">
+                    <div class="security-header">
+                        <h3>🛡️ Session Security</h3>
+                    </div>
+                    <div class="security-content">
+                        <div class="security-info">
+                            <div class="info-row">
+                                <span class="info-icon">🔒</span>
+                                <div class="info-text">
+                                    <strong>Session Storage:</strong> Clears when browser closes (more secure)
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-icon">💾</span>
+                                <div class="info-text">
+                                    <strong>Remember Me:</strong> Persists across browser sessions (convenient)
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-icon">⚠️</span>
+                                <div class="info-text">
+                                    <strong>Security Note:</strong> Only use "Remember Me" on trusted devices
+                                </div>
+                            </div>
+                        </div>
+                        <div class="logout-warning">
+                            <p><strong>Logout clears all sessions</strong> - both temporary and persistent</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features-section">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Analytics</h3>
+                        <p>View your secure analytics dashboard</p>
+                        <button class="feature-btn">Access Analytics</button>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">⚙️</div>
+                        <h3>Settings</h3>
+                        <p>Manage your account and security settings</p>
+                        <button class="feature-btn">Open Settings</button>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🔐</div>
+                        <h3>Security</h3>
+                        <p>Review security logs and sessions</p>
+                        <button class="feature-btn">View Security</button>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📈</div>
+                        <h3>Reports</h3>
+                        <p>Generate and download secure reports</p>
+                        <button class="feature-btn">Create Report</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Success Animation Overlay -->
+    <div class="success-overlay" id="successOverlay" style="display: none;">
+        <div class="success-content">
+            <div class="success-icon">✅</div>
+            <h3>Login Successful!</h3>
+            <p>Redirecting to dashboard...</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
