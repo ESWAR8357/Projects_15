@@ -209,8 +209,6 @@ class DatabaseManager {
                 this.companyError.textContent = errorMessage;
                 break;
         }
-
-        this.updateFormStatus();
         return isValid;
     }
 
